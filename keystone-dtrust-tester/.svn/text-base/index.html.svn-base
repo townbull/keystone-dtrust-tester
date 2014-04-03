@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/jquery.contextMenu.css">
+ <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+ <link rel="stylesheet" type="text/css" href="css/racks.css">
+ <script src="js/jquery-1.8.2.js"></script>
+ <script src="js/jquery.contextMenu.js"></script>
+ <script src="js/jquery.ui.position.js"></script>
+ <script src="js/jquery-ui.js"></script>
+ <script src="js/racks.js"></script>
+</head>
+
+<body>
+
+<center>
+<p></p>
+
+<p>
+<div class="server_error" align="center">
+<h3>Error: Web Server Failed to obtain status of the servers</h3>
+
+<h4><i>
+<div id="error_status"></div>
+</div>
+</i></h4>
+
+</div>
+</p>
+
+<div class="header_line">
+
+<div class="time">
+<div>Last System Queried</div><b><div id="update_time">updating ...</div></b>
+</div>
+<div class="time">
+<div>Next Refresh in</div><b><div id="refresh_time">refreshing ...</div></b>
+</div>
+
+</div>
+
+<p></p>
+</center>
+
+<div class="center" align="center">
+
+<div class="rack_spacing">
+<div id="Rack_1" class="title" align="center"><b>Rack 1</b></div>
+<div id="10_245_111_1" class="node">r1-610-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_2" class="node">r1-610-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_3" class="node">r1-610-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_4" class="node">r1-610-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_5" class="node">r1-710-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_6" class="node">r1-710-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_7" class="node">r1-710-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_8" class="node">r1-710-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_9" class="node">r1-710-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_111_10" class="node">r1-910-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+</div>
+
+<div class="rack_spacing">
+<div id="Rack_2" class="title" align="center"><b>Rack 2</b></div>
+<div id="10_245_112_1" class="node">r2-410-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_2" class="node">r2-410-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_3" class="node">r2-410-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_4" class="node">r2-410-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_5" class="node">r2-410-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_6" class="node">r2-410-6<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_7" class="node">r2-410-7<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_8" class="node">r2-610-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_9" class="node">r2-610-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_10" class="node">r2-710-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_11" class="node">r2-710-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_12" class="node">r2-710-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_13" class="node">r2-710-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_14" class="node">r2-710-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_15" class="node">r2-710-6<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_16" class="node">r2-710-7<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_17" class="node">r2-910-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_112_20" class="node">r2-910-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+</div>
+
+<div class="rack_spacing">
+<div id="Rack_3" class="title" align="center"><b>Rack 3</b></div>
+<div id="10_245_113_1" class="node">r3-410-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_2" class="node">r3-410-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_3" class="node">r3-410-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_4" class="node">r3-410-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_5" class="node">r3-410-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_6" class="node">r3-610-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_7" class="node">r3-610-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_8" class="node">r3-610-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_9" class="node">r3-610-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_10" class="node">r3-710-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_11" class="node">r3-710-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_12" class="node">r3-710-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_13" class="node">r3-710-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_14" class="node">r3-710-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_15" class="node">r3-710-6<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_16" class="node">r3-710-7<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_17" class="node">r3-710-8<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_113_18" class="node">r3-910-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+</div>
+
+<div class="rack_spacing">
+<div id="Rack_4" class="title" align="center"><b>Rack 4</b></div>
+<div id="10_245_114_1" class="node">r4-410-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_2" class="node">r4-410-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_3" class="node ics_admin">r4-410-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_4" class="node">r4-410-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_5" class="node">r4-410-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_6" class="node">r4-610-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_7" class="node">r4-610-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_8" class="node">r4-610-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_9" class="node">r4-610-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_10" class="node">r4-710-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_11" class="node">r4-710-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_12" class="node">r4-710-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_13" class="node">r4-710-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_14" class="node">r4-710-5<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_15" class="node">r4-710-6<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_114_16" class="node">r4-710-7<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+</div>
+
+<div class="rack_spacing">
+<div id="Rack_5" class="title" align="center"><b>Rack 5</b></div>
+<div id="10_245_115_1" class="node">r5-x3550-1<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_115_2" class="node">r5-3550-2<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_115_3" class="node">r5-x3550-3<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+<div id="10_245_115_4" class="node">r5-3550-4<div class="node_error" align="left"></div><img title="This server is powered off" type="image" src="images/power_off.png"/></div>
+</div>
+
+</div>
+
+<!--
+DIV For the IPMI Output Dialog widgets
+--!>
+<div id="dialog_10_245_111_1" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_2" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_3" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_4" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_5" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_6" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_7" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_8" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_9" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_111_10" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_1" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_2" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_3" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_4" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_5" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_6" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_7" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_8" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_9" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_10" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_11" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_12" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_13" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_14" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_15" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_16" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_17" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_112_20" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_1" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_2" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_3" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_4" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_5" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_6" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_7" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_8" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_9" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_10" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_11" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_12" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_13" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_14" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_15" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_16" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_113_17" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_1" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_2" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_3" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_4" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_5" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_6" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_7" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_8" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_9" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_10" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_11" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_12" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_13" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_14" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_15" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_16" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_114_17" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_115_1" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_115_2" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_115_3" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+<div id="dialog_10_245_115_4" title="<div class=dialog_title>IPMI Output</div>" class="ipmi_cmd"><pre>IPMI Output</pre></div>
+
+</body>
+</html>

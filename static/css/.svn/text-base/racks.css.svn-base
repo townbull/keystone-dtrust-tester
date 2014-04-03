@@ -1,0 +1,136 @@
+.error {
+  background-color: red;
+}
+
+.warning {
+  background-color: yellow;
+}
+
+.good {
+  background-color: #228B22;
+}
+
+.node
+{
+  width:8.4em;
+  height:1.3em;
+  border-style: ridge;
+  border-color: #98bf21;
+  position: relative;
+  border-radius: 4px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.rack_spacing
+{
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align:top;
+}
+
+.title
+{
+  width:8.4em;
+  height:1.3em;
+  border-style: double;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px #888888;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.dialog_title
+{
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 0.9em;
+}
+
+img
+{
+  position: relative;
+  left: 1em;
+  display: inline;
+}
+
+
+.ipmi_cmd
+{
+  width: 20em; height: 2em;
+  border-style: ridge;
+  position:relative;
+  border-radius: 4px;
+  z-index:1;
+  display: none;
+  overflow: auto;
+  resize: both;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 0.8em;
+}
+
+.node_error
+{
+  width: 550px; height: 125px;
+  border-style: ridge;
+  border-color: #CD0000;
+  background-color: #FFFFFF;
+  position:relative;
+  box-shadow: 10px 10px 5px #888888;
+  border-radius: 4px;
+  z-index:1;
+  display: none;
+  overflow: auto;
+  resize: both;
+}
+
+.header_line
+{
+  width: 400px;
+  background-color: #9ACD32;
+  border-color: black;
+  border-style: solid;
+  display: inline-block;
+  box-shadow: 10px 10px 5px #888888;
+  border-radius: 8px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.time
+{
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.server_error
+{
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  appearance: window;
+  border-style: ridge;
+  border-color: #000000;
+  background-color: #FF0000;
+  position:relative;
+  display: none;
+}
+
+.tooltip
+{
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 0.8em;
+}
+
+.joyent
+{
+  background-image: url('images/joyent.png');
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.ics_admin
+{
+  background-image: url('images/ics_logo.png');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size:1.6em 1.4em;
+}
