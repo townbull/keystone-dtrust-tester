@@ -9,10 +9,18 @@ var output = [];
 
 var spawnReq = function(){
 
-  for( var i = 0; i < 2; i++) {
+  for( var i = 0; i < 20; i++) {
     // console.log("Execution No. ", i);
     // console.log(__dirname);
-    exec(__dirname+"/curl.sh u2.p2 u1.p1", function (error1, stdout1, stderr1){
+    execCurl(i);
+   
+  }
+
+}
+
+var execCurl = function(i){
+   exec(__dirname+"/curl.sh u2.p2 u1.p1", function (error1, stdout1, stderr1){
+      console.log("Execution No. "+i);
       if(error1 != null){
 
       } else if(stderr1.length != 0){
@@ -24,70 +32,68 @@ var spawnReq = function(){
       }
     }
     );
-  }
-
 }
 
-var readServerList = function() {
-  var myString = '';
-  fs.readFile('/root/web_server/RDC_SERVER_CHECK/ics_servers', 'utf8', function(err, data) {
-    if (err) throw err;
-    myString = data.toString('ascii', 0, data.length);
+// var readServerList = function() {
+//   var myString = '';
+//   fs.readFile('/root/web_server/RDC_SERVER_CHECK/ics_servers', 'utf8', function(err, data) {
+//     if (err) throw err;
+//     myString = data.toString('ascii', 0, data.length);
 
-    var serverIP = '';
-    for( var i = 0; i < myString.length; i++) {
-      if (myString[i] == '\n') {
-        var server = new Object();
-        server.server_status = '';
-        server.power_status = '';
-        serverList[serverIP] = server;
-        retry_count[serverIP] = 0;
-        doExec(serverIP);
-        serverIP = '';
-      } else {
-        serverIP += myString[i];
-      }
-    }
-  });
-}
+//     var serverIP = '';
+//     for( var i = 0; i < myString.length; i++) {
+//       if (myString[i] == '\n') {
+//         var server = new Object();
+//         server.server_status = '';
+//         server.power_status = '';
+//         serverList[serverIP] = server;
+//         retry_count[serverIP] = 0;
+//         doExec(serverIP);
+//         serverIP = '';
+//       } else {
+//         serverIP += myString[i];
+//       }
+//     }
+//   });
+// }
 
-var doExec = function(serverIP) {
-  exec('/usr/sbin/ipmitool -U root -I lanplus -f /root/web_server/RDC_SERVER_CHECK/.ipmi -H ' + serverIP + ' sel elist last 5|cut -d"|" -f2-', function (error1, stdout1, stderr1) {  
-    if (error1 != null) {
-      serverList[serverIP].server_status = error1;
-      if (retry_count[serverIP] == IPMI_RETRY_LIMIT) {
-        retry_count[serverIP] = 0;
-        return;
-      }
-    } else if (stderr1.length != 0) {
-      serverList[serverIP].server_status = stderr1;
-      if (retry_count[serverIP] == IPMI_RETRY_LIMIT) {
-        retry_count[serverIP] = 0;
-        return;
-      }
-    } else { 
-      serverList[serverIP].server_status = stdout1;
-      //Only if the IPMI command works do we want to execute IPMI Power Status check.
-      checkPowerStatus(serverIP);
-      retry_count[serverIP] = 0;
-      return;
-    } 
-    setTimeout(function() {
-      retry_count[serverIP]++;
-      doExec(serverIP);
-    }, 20000);
-  });
-}
+// var doExec = function(serverIP) {
+//   exec('/usr/sbin/ipmitool -U root -I lanplus -f /root/web_server/RDC_SERVER_CHECK/.ipmi -H ' + serverIP + ' sel elist last 5|cut -d"|" -f2-', function (error1, stdout1, stderr1) {  
+//     if (error1 != null) {
+//       serverList[serverIP].server_status = error1;
+//       if (retry_count[serverIP] == IPMI_RETRY_LIMIT) {
+//         retry_count[serverIP] = 0;
+//         return;
+//       }
+//     } else if (stderr1.length != 0) {
+//       serverList[serverIP].server_status = stderr1;
+//       if (retry_count[serverIP] == IPMI_RETRY_LIMIT) {
+//         retry_count[serverIP] = 0;
+//         return;
+//       }
+//     } else { 
+//       serverList[serverIP].server_status = stdout1;
+//       //Only if the IPMI command works do we want to execute IPMI Power Status check.
+//       checkPowerStatus(serverIP);
+//       retry_count[serverIP] = 0;
+//       return;
+//     } 
+//     setTimeout(function() {
+//       retry_count[serverIP]++;
+//       doExec(serverIP);
+//     }, 20000);
+//   });
+// }
 
-var checkPowerStatus = function(serverIP) {
-  exec('/usr/sbin/ipmitool -U root -I lanplus -f /root/web_server/RDC_SERVER_CHECK/.ipmi -H ' + serverIP + ' power status', function (error, stdout, stderr) {
-    if (stdout != null) {
-      serverList[serverIP].power_status = stdout;
-    } else {
-      serverList[serverIP].power_status = "Chassis Power is undefined";
-    }
-  });
-}
+// var checkPowerStatus = function(serverIP) {
+//   exec('/usr/sbin/ipmitool -U root -I lanplus -f /root/web_server/RDC_SERVER_CHECK/.ipmi -H ' + serverIP + ' power status', function (error, stdout, stderr) {
+//     if (stdout != null) {
+//       serverList[serverIP].power_status = stdout;
+//     } else {
+//       serverList[serverIP].power_status = "Chassis Power is undefined";
+//     }
+//   });
+// }
 
 // readServerList();
 spawnReq();
