@@ -1,4 +1,4 @@
-#!/usr/bin/env /usr/local/bin/node
+#!/usr/bin/env /usr/bin/node
 
 var exec  = require('child_process').exec;
 var fs =  require('fs');
@@ -20,7 +20,7 @@ var spawnReq = function(){
 
 var execCurl = function(i){
    exec(__dirname+"/curl.sh u2.p2 u1.p1", function (error1, stdout1, stderr1){
-      console.log("Execution No. "+i);
+      //console.log("Execution No. "+i);
       if(error1 != null){
 
       } else if(stderr1.length != 0){

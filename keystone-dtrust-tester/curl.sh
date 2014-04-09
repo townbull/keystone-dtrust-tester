@@ -25,14 +25,16 @@ fi
 REQ_DATA='{"auth":{"identity":{"methods":["password"],"password":{"user":{"domain":{"name":"'$USER_DOMAIN'"},"name":"'$USER'","password":"admin"}}},"scope":{"project":{"domain":{"name":"'$PROJECT_DOMAIN'"},"name":"'$PROJECT'"}}}}'
 #echo "REQ_DATA: "$REQ_DATA
 
-START=$(($(time +%s%N)/1000000))
+START=$(($(date +%s%N)/1000000))
 curl -si http://10.245.122.64:5000/v3/auth/tokens -X POST \
 -H "Content-Type: application/json" -H "Accept: application/json" -d \
-$REQ_DATA
-END=$(($(time +%s%N)/1000000))
+$REQ_DATA >$CACHE_FILE
+END=$(($(date +%s%N)/1000000))
 #echo '{"time":5}'
 TIME=$(($END-$START))
-echo '{"time":$TIME}'
+echo '{"time":'$TIME'}'
+
+exit 0
 
 TOKEN_REF=$(grep "token" $CACHE_FILE)
 #echo $TOKEN_REF
