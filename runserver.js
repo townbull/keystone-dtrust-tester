@@ -1,36 +1,29 @@
 var express = require('express');
-//var https = require('https');
 var app = express();
 var http = require('http');
 
 var exec  = require('child_process').exec;
 var fs =  require('fs');
-var myJSONObject = {};
-var myIPMICommandResponse = [];
+//var myJSONObject = {};
 var userAuthPasswd = "";
 /*var httpsOptions = {
   key: fs.readFileSync('/root/web_server/RDC_SERVER_CHECK/privatekey.pem'),
   cert: fs.readFileSync('/root/web_server/RDC_SERVER_CHECK/certificate.pem')
 };*/
 
-var spawnReq = function() {
+var spawnReq = function(resp, num) {
+  for( var i = 0; i < num; i++) {
+    // console.log("Execution No. ", i);
+    // console.log(__dirname);i
+    serverCheck(resp, i);
 
-  fs.readFile('/root/web_server/.webApp.passwd', 'utf8', function(err, data) {
-    if (err) throw err;
-    myString = data.toString('ascii', 0, data.length-3);
-    var stored_passwd = "";
-    for( var i = 0; i < myString.length; i++) {
-      if (myString[i] != '\n') {
-        stored_passwd += myString[i];
-      }
-    }
-    userAuthPasswd = stored_passwd;
-  });
+  }
 }
 
-var serverCheck = function() {
-  exec(__dirname+"/keystone-dtrust-tester/batch_req.js", function (error, stdout, stderr) {
+var serverCheck = function(respArray, index) {
+  exec(__dirname+"/keystone-dtrust-tester/one_req.js", function (error, stdout, stderr) {
     var update_date = new Date();
+    var myJSONObject = {};
     myJSONObject.last_update = "" + update_date.getFullYear() + "-" + 
                                (update_date.getMonth()+1) + "-" + 
                                update_date.getDate() + "    " + 
@@ -46,17 +39,19 @@ var serverCheck = function() {
       myJSONObject.error = ""+stderr.toString()+"";
       console.log('An Exec Error occured on STDERR: ' + stderr);
     } else if (stdout.length != 0 || stdout != null) {
-      myJSONObject.success = true;
       try {
         myJSONObject.output = JSON.parse(stdout); 
       } catch (err) {
         myJSONObject.success = false;
         myJSONObject.error = ""+err.stack+"\nThe output of server_check.js script is:\n"+stdout;
       }
+      myJSONObject.success = true;
     } else {
       myJSONObject.success = false;
       myJSONObject.error = "Unknown Error Occurred: The output of server_check.js script is empty!";
     }
+    respArray[index] = JSON.stringify(myJSONObject)
+    console.log('respArray[' + index + '] = ' + respArray[index]);
   });
 }
 
@@ -109,28 +104,51 @@ app.use(express.static(__dirname + '/static'));
   res.redirect('https://10.245.0.17/');
 });*/
 
-// Gather all server data once, then every 5 minutes.
-serverCheck();
 
 /*var runServerCheck = setInterval(function() {
   serverCheck();
 }, 300000);
 */
 
-app.get('/get-keystone', function (req, res) {
-  if (myJSONObject.success != null) {
-   res.json(myJSONObject);
+app.get('/runtests', function (req, res) {
+  var ksResponse = [];
+  var reqnum = 20;
+  spawnReq(ksResponse, reqnum);
+  //res.json({"complete": ksResponse.length});
+  //console.log("complete response" + ksResponse);
+    //res.writeHead(200, { 'Content-Type': 'text/plain' });
+    var progress = setInterval(function() {
+      res.write('{"completed": ' + ksResponse.length + '}');
+      if (ksResponse.length == reqnum) {
+        res.write(JSON.stringify({"Keystone Responses":ksResponse}));
+        res.end();
+        clearInterval(progress);
+      }
+    }, 100);
+    
+});
+
+app.get('/checkresults', function (req, res) {
+  var ksResponse = [];
+  var reqnum = 20;
+  spawnReq(ksResponse, reqnum);
+  res.json({"complete": ksResponse.length});
+  
+  console.log("complete response"+ksResponse);
+  if (ksResponse.length == reqnum) {
+    console.log("complete response");
+    res.json({"Keystone Responses":ksResponse});
   } else {
     setInterval(function() {
-      if (myJSONObject.success != null) {
-        res.json(myJSONObject);
+      res.json({"complete": ksResponse.length});
+      if (ksResponse.length == reqnum) {
+        res.json({"Keystone Responses":ksResponse});
         clearInterval();
         return;
       }
     }, 10000);
   }
 });
-
 /*
 app.get('/run-ipmi-command', function (req, res) {
   myIPMICommandResponse[req.query.ipmiOptions.IP] = null;

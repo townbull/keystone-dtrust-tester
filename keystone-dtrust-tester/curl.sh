@@ -26,9 +26,9 @@ REQ_DATA='{"auth":{"identity":{"methods":["password"],"password":{"user":{"domai
 #echo "REQ_DATA: "$REQ_DATA
 
 START=$(($(date +%s%N)/1000000))
-curl -si http://10.245.122.64:5000/v3/auth/tokens -X POST \
+curl -si http://localhost:5000/v3/auth/tokens -X POST \
 -H "Content-Type: application/json" -H "Accept: application/json" -d \
-$REQ_DATA >$CACHE_FILE
+$REQ_DATA 2>&1 > /dev/null
 END=$(($(date +%s%N)/1000000))
 #echo '{"time":5}'
 TIME=$(($END-$START))
