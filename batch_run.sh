@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ext=1
-ksx=0
 
 # Keystone servers with capability of 2 to the power of each number
 KS0="10.245.122.97"
@@ -13,9 +11,11 @@ KS4="10.245.123.54"
 # Database server for experiment result storage
 DB="10.245.122.14"
 
-KSRST="cd /opt/stack/keystone; git pull; ./ksrestart.sh"
+KSRST="cd /opt/stack/keystone;git pull;nohup ksrestart.sh &"
 
-while [ $ksx -lt 5 ]
+ext=1
+ksx=2
+while [ $ksx -lt 3 ]
 do
 
     KSX="KS$ksx"
@@ -25,12 +25,13 @@ do
     do
         # restart expriment keystone server
         ssh -o "StrictHostKeyChecking no" root@$KSX $KSRST
-
+	echo "done restart keystone"
         # execute intra-domain experiment
-        ./run_exp.sh $ksx -i $ext
+        /opt/stack/keystone/run_exp.sh $ksx -i $ext
+	echo "sent request $ksx-I$ext-xxx."
         
         # wait result arrive the db
-        exp_num=`expr $ext * 100`
+        exp_num= $(($ext * 100))
         resp_num=0
         timeout=0
         while [ $resp_num -lt $exp_num ]
@@ -38,7 +39,8 @@ do
             sleep 10
             resp_num=$(/usr/bin/mysql -uroot -padmin -h$DB -N -e "use osacdt;select count(*) \
                 from dt_exp_results where id like \"$ksx-I$ext-%\";")
-            timeout=`expr $timeout + 1`
+            resp_num=$(($resp_num))
+            timeout=$(($timeout + 1))
             if [ $timeout -lt 100 ]
             then
                 echo "Time out in $ksx-I$ext-xxx."
@@ -54,7 +56,6 @@ do
         ./run_exp.sh $ksx -c $ext
 
         # wait result arrive the db
-        exp_num=`expr $ext * 100`
         resp_num=0
         timeout=0
         while [ $resp_num -lt $exp_num ]
@@ -62,7 +63,8 @@ do
             sleep 10
             resp_num=$(/usr/bin/mysql -uroot -padmin -h$DB -N -e "use osacdt;select count(*) \
                 from dt_exp_results where id like \"$ksx-C$ext-%\";")
-            timeout=`expr $timeout + 1`
+            resp_num=$(($resp_num))
+            timeout=$(($timeout + 1))
             if [ $timeout -lt 100 ]
             then
                 echo "Time out in $ksx-C$ext-xxx."
