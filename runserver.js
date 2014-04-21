@@ -1,15 +1,8 @@
 var express = require('express');
 var app = express();
 var http = require('http');
-
 var exec  = require('child_process').exec;
-var fs =  require('fs');
-//var myJSONObject = {};
-var userAuthPasswd = "";
-/*var httpsOptions = {
-  key: fs.readFileSync('/root/web_server/RDC_SERVER_CHECK/privatekey.pem'),
-  cert: fs.readFileSync('/root/web_server/RDC_SERVER_CHECK/certificate.pem')
-};*/
+
 
 var spawnReq = function(resp, num) {
   for( var i = 0; i < num; i++) {
@@ -55,61 +48,13 @@ var serverCheck = function(respArray, index) {
   });
 }
 
-// var runIPMICommand = function(ipmiOptions) {
-//   var serverIP = ipmiOptions.IP.replace(/_/g, '.');
-//   var ipmiParms = '';
-//   for (i in ipmiOptions.ipmi_parms) {
-//     ipmiParms += ' ' + ipmiOptions.ipmi_parms[i] ;
-//   }
-//   exec('/usr/sbin/ipmitool -U root -I lanplus -f /root/web_server/RDC_SERVER_CHECK/.ipmi -H ' + serverIP + ipmiParms,
-//     function (error, stdout, stderr) {
-//       var myJSONOutput = {};
-//       myJSONOutput.IP = ipmiOptions.IP;
-//       if (error != null) {
-//         myJSONOutput.success = false;
-//         myJSONOutput.output = error.toString();
-//       } else if (stderr.length != 0) {
-//         myJSONOutput.success = false;
-//         myJSONOutput.output = stderr;
-//       } else {
-//         myJSONOutput.success = true;
-//         myJSONOutput.output = stdout;
-//       }
-//       myIPMICommandResponse[ipmiOptions.IP] = myJSONOutput;
-//     }
-//   );
-// }
-
 http.createServer(app).listen(8081);
-
-// Setup User Authentication
-/*getPasswd();
-app.use(express.basicAuth(function(user, pass, callback) {
-  var result;
-  if (user === 'root' && pass === userAuthPasswd) {result = true;}
-  callback(null, result);
-}));
-*/
 
 // Setup base directory for html and all other web server files.
 // app.use(express.static('/root/web_server/RDC_SERVER_CHECK'));
 app.use(express.static(__dirname + '/static'));
 
-
-// Now create the https server
-//https.createServer(httpsOptions, app).listen(443);
-
-// Redirect all http traffic to https
-/*http_app.get('*', function(req, res) {
-  res.redirect('https://10.245.0.17/');
-});*/
-
-
-/*var runServerCheck = setInterval(function() {
-  serverCheck();
-}, 300000);
-*/
-
+// Streaming response until all the concurrent requests are responded.
 app.get('/runtests', function (req, res) {
   var ksResponse = [];
   var reqnum = 20;
@@ -125,7 +70,6 @@ app.get('/runtests', function (req, res) {
         clearInterval(progress);
       }
     }, 100);
-    
 });
 
 app.get('/checkresults', function (req, res) {
@@ -149,20 +93,3 @@ app.get('/checkresults', function (req, res) {
     }, 10000);
   }
 });
-/*
-app.get('/run-ipmi-command', function (req, res) {
-  myIPMICommandResponse[req.query.ipmiOptions.IP] = null;
-  runIPMICommand(req.query.ipmiOptions);
-  if (myIPMICommandResponse[req.query.ipmiOptions.IP] != null) {
-   res.json(myIPMICommandResponse[req.query.ipmiOptions.IP]);
-  } else {
-    setInterval(function() {
-      if (myIPMICommandResponse[req.query.ipmiOptions.IP] != null) {
-        res.json(myIPMICommandResponse[req.query.ipmiOptions.IP]);
-        clearInterval();
-        return;
-      }
-    }, 5000);
-  }
-});*/
-
